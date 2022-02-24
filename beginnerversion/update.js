@@ -114,7 +114,15 @@ function update() {
         }
 
     }
-    
+    // spawn a new building when the it is time
+    B1TimeSinceLastSpawn += timeSinceLastFrame;
+    if(B1TimeSinceLastSpawn>B1SpawnInterval) {
+        B1s.push({
+            xPosition: spawnXPosition,
+            yPosition: 880, 
+        });
+        B1TimeSinceLastSpawn = 0;
+    }    
     // Building
     for(let B3 of B3s) {
         // draw the building

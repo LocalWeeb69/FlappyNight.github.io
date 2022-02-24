@@ -85,7 +85,7 @@ let stars = [
 // building variables
 const B1image = new Image(400, 400);
       B1image.src = "../assets/images/building_1.png";
-const B1SpawnInterval = randomBetween(20500, 27500); // milliseconds
+const B1SpawnInterval = randomBetween(20500, 37500); // milliseconds
 const B1XSpeed = -.35;
 let B1TimeSinceLastSpawn = 0; // milliseconds
 let B1s = [
