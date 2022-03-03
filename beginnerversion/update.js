@@ -414,7 +414,12 @@ function update() {
         fireballSpawnInterval = 1750;
     };
 
-    if(scoreValue>=50){
+    if(scoreValue>=50 && nicemode == 1 ){
+        fireballXSpeed = -10.5;
+        fireballSpawnInterval = 1500;
+    };
+
+    if(scoreValue>=50 && nicemode == 0){
         fireballImage.src = "../assets/images/blue_fireball.png";
         fireballXSpeed = -10.5;
         fireballSpawnInterval = 1500;
@@ -425,9 +430,13 @@ function update() {
         fireballImage.src = "../assets/images/nice.png";
     }
 
-    if(scoreValue>=70){
+    if(scoreValue>=70 && nicemode == 0){
         fireballXSpeed = -10.5;
         fireballImage.src = "../assets/images/blue_fireball.png"
+    }
+
+    if(scoreValue>=70 && nicemode == 1){
+        fireballXSpeed = -10.5;
     }
 
     if(scoreValue>=75){
@@ -458,6 +467,7 @@ function update() {
         DiamondImage.src = "../assets/images/MD.png";
         birdImage.src = "../assets/images/pepe.png";
         starimage.src = "../assets/images/illuminati.png";
+        music = new Audio ("../assets/sounds/wide.mp3");
     }
     
     // update timeSinceLastFrame and draw next frame

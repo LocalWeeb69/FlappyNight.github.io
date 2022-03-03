@@ -1,6 +1,6 @@
  //game variables
 const gameOverSound = new Audio("../assets/sounds/gameover.mp3");
-const music = new Audio("../assets/sounds/music.mp3");
+let music = new Audio("../assets/sounds/music.mp3");
       music.loop = true;
       music.volume = 1;
 const debugModeIsOn = false;

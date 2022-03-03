@@ -57,6 +57,7 @@ document.addEventListener("keydown", function(event) {
         DiamondImage.src = "../assets/images/Diamond.png";
         birdImage.src = "../assets/images/bird.png";
         starimage.src = "../assets/images/star.png";
+        music = "../assets/sounds/music.mp3";
         return; 
     }
 
