@@ -18,6 +18,23 @@ document.addEventListener("keydown", function(event) {
         return;
     }
 
+
+    if(gameState == "action" && event.key == selvmordkey){
+        // if they do, end the game
+        birdCanFlap = false;
+        gameOverSound.play();
+        gameState = "gameover";
+        return;
+    }
+    
+    if(nicekey == 1 && event.key == testkey2){
+        nicemode = 1
+    };
+
+    if(event.key == testkey){
+        nicekey = 1
+    };
+
     // reset the game if the restart key is pressed
     if(gameState == "gameover" && event.key == restartKey) {
         gameState = "menu";
@@ -29,6 +46,17 @@ document.addEventListener("keydown", function(event) {
         fireballTimeSinceLastSpawn = fireballSpawnInterval;
         scoreValue = 0;
         coins = [];
+        fireballImage.src = "../assets/images/fireball.png";
+        fireballXSpeed = -5.5;
+        fireballSpawnInterval = 2000;
+        nicekey = 0;
+        nicemode = 0;
+        moon=true;
+        backroundimage.src = "../assets/images/baggrund.png";
+        scoreImage.src = "../assets/images/music_note.png";
+        DiamondImage.src = "../assets/images/Diamond.png";
+        birdImage.src = "../assets/images/bird.png";
+        starimage.src = "../assets/images/star.png";
         return; 
     }
 

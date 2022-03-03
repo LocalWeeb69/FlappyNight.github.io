@@ -3,9 +3,49 @@ function update() {
     
     fillCanvas("rgb(00, 00, 99)");
 
-   
+    console.log(nicemode);
 
+    drawImage(
+        backroundimage,
+        backroundXpostion,
+        backroundYpostion,
+        backroundimage.width,
+        backroundimage.height
+    );
+
+    if(moon == true){
+        drawmoon();
+    }
     
+
+    // for every star
+    for(let star of stars) {
+        // draw the star
+        drawImage(
+            starimage,
+            star.xPosition,
+            star.yPosition,
+            starimage.width,
+            starimage.height
+        );
+        
+        // update the x position of the star
+        star.xPosition += starXSpeed;
+        // remove star if it moves beyond the destruction point
+        if(star.xPosition < destructionXPosition) {
+            stars = stars.remove(star);
+        }
+
+    }
+    // spawn a new star when the it is time
+    starTimeSinceLastSpawn += timeSinceLastFrame;
+    if(starTimeSinceLastSpawn>starSpawnInterval) {
+        stars.push({
+            xPosition: spawnXPosition,
+            yPosition: randomBetween(0, canvas.height/3), 
+        });
+        starTimeSinceLastSpawn = 0;
+    }    
     
     
 
@@ -37,33 +77,7 @@ function update() {
         cloudTimeSinceLastSpawn = 0;
     }    
 
-    // for every star
-    for(let star of stars) {
-        // draw the star
-        drawImage(
-            starimage,
-            star.xPosition,
-            star.yPosition,
-            starimage.width,
-            starimage.height);
-        
-        // update the x position of the star
-        star.xPosition += starXSpeed;
-        // remove star if it moves beyond the destruction point
-        if(star.xPosition < destructionXPosition) {
-            stars = stars.remove(star);
-        }
-
-    }
-    // spawn a new star when the it is time
-    starTimeSinceLastSpawn += timeSinceLastFrame;
-    if(starTimeSinceLastSpawn>starSpawnInterval) {
-        stars.push({
-            xPosition: spawnXPosition,
-            yPosition: randomBetween(0, canvas.height/3), 
-        });
-        starTimeSinceLastSpawn = 0;
-    }    
+   
 
 
      // Building
@@ -96,7 +110,7 @@ function update() {
 
    
 
-     // Building
+    // Building
     for(let B1 of B1s) {
         // draw the building
         drawImage(
@@ -151,6 +165,35 @@ function update() {
         });
         B3TimeSinceLastSpawn = 0;
     }    
+
+    // Building
+    for(let B4 of B4s) {
+        // draw the building
+        drawImage(
+            B4image,
+            B4.xPosition,
+            B4.yPosition,
+            B4image.width,
+            B4image.height);
+        
+        // update the x position of the building
+        B4.xPosition += B4XSpeed;
+        // remove building if it moves beyond the destruction point
+        if(B4.xPosition < destructionXPosition) {
+            B4s = B4s.remove(B4);
+        }
+
+    }
+    
+    // spawn a new building when the it is time
+    B4TimeSinceLastSpawn += timeSinceLastFrame;
+    if(B4TimeSinceLastSpawn>B4SpawnInterval) {
+        B4s.push({
+            xPosition: spawnXPosition,
+            yPosition: 917, 
+        });
+        B4TimeSinceLastSpawn = 0;
+    }    
     // draw the bird image
         drawImage(birdImage,
             birdXPosition,
@@ -158,6 +201,7 @@ function update() {
             birdImage.width,
             birdImage.height
         );
+
 
     // draw the bird hitbox if debugmode is on
     if(debugModeIsOn) {
@@ -244,6 +288,8 @@ function update() {
 
     updatediamond();
 
+    
+
     // for each fireball
     for(let fireball of fireballs) {
         // draw the fireball
@@ -302,6 +348,7 @@ function update() {
     if(gameState == "action") {
         fireballTimeSinceLastSpawn += timeSinceLastFrame;
     }
+
 
     //draw the scoreboard
     drawImage(
@@ -362,12 +409,56 @@ function update() {
     }
 
 
+    if(scoreValue>=25){
+        fireballXSpeed = -7.5;
+        fireballSpawnInterval = 1750;
+    };
 
+    if(scoreValue>=50){
+        fireballImage.src = "../assets/images/blue_fireball.png";
+        fireballXSpeed = -10.5;
+        fireballSpawnInterval = 1500;
+    };
 
+    if(scoreValue==69){
+        fireballXSpeed = -20.5;
+        fireballImage.src = "../assets/images/nice.png";
+    }
 
+    if(scoreValue>=70){
+        fireballXSpeed = -10.5;
+        fireballImage.src = "../assets/images/blue_fireball.png"
+    }
 
+    if(scoreValue>=75){
+        fireballXSpeed = -12.5;
+        fireballSpawnInterval = 1250;
+    }
 
+    if(scoreValue>=100){
+        fireballXSpeed = -15.5;
+        fireballSpawnInterval = 1000;
+    }
 
+    if(scoreValue>=200){
+        fireballXSpeed = -20;
+        fireballSpawnInterval = 500;
+    }
+
+    if(scoreValue>=300){
+        fireballXSpeed = -30
+        fireballSpawnInterval = 150;
+    }
+
+    if(nicemode==1){
+        fireballImage.src = "../assets/images/nice.png";
+        moon = false;
+        backroundimage.src = "../assets/images/memebackground.png";
+        scoreImage.src = "../assets/images/dorito.png";
+        DiamondImage.src = "../assets/images/MD.png";
+        birdImage.src = "../assets/images/pepe.png";
+        starimage.src = "../assets/images/illuminati.png";
+    }
     
     // update timeSinceLastFrame and draw next frame
     timeOfCurrentFrame = new Date().getTime();
